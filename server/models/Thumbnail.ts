@@ -7,7 +7,7 @@ export interface IThumbnail extends Document {
     style: "Bold & Graphic" | "Tech/Futuristic" | "Minimalist" | "Photorealistic" | "Illustrated";
     aspect_ratio?: "16:9" | "1:1" | "9:16";
     color_scheme?: "vibrant" | "sunset" | "forest" | "neon" | "purple" | "monochrome" | "ocean" | "pastel";
-    text_overlay?: boolean;
+    text_overlay?: string;
     image_url?: string;
     prompt_used?: string;
     user_prompt?: string;
@@ -23,7 +23,7 @@ const ThumbnailSchema = new mongoose.Schema<IThumbnail>({
     style: { type: String, enum: ["Bold & Graphic", "Tech/Futuristic", "Minimalist", "Photorealistic", "Illustrated"], required: true },
     aspect_ratio: { type: String, enum: ["16:9", "1:1", "9:16"], default: "16:9" },
     color_scheme: { type: String, enum: ["vibrant", "sunset", "forest", "neon", "purple", "monochrome", "ocean", "pastel"], default: "vibrant" },
-    text_overlay: { type: Boolean, default: false },
+    text_overlay: { type: String, default: "" },
     image_url: { type: String, default: "" },
     prompt_used: { type: String},
     user_prompt: { type: String},

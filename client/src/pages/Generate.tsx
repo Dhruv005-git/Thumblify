@@ -38,7 +38,7 @@ const Generate = () => {
       style,
       aspect_ratio: aspectRatio,
       color_scheme: colorSchemeId,
-      text_overlay: true,
+      text_overlay: title.toUpperCase(),
     }
 
     const {data} = await api.post('/api/thumbnail/generate', api_payload);
