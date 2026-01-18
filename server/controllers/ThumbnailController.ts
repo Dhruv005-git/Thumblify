@@ -144,3 +144,35 @@ export const deleteThumbnail = async (req: Request, res: Response) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const updateThumbnailText = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const {
+      text_overlay,
+      text_pos_x,
+      text_pos_y,
+      text_size_pct,
+      text_font,
+      text_color,
+    } = req.body;
+
+    const updated = await Thumbnail.findByIdAndUpdate(
+      id,
+      {
+        text_overlay,
+        text_pos_x,
+        text_pos_y,
+        text_size_pct,
+        text_font,
+        text_color,
+      },
+      { new: true, runValidators: true }
+    );
+
+    res.json({ thumbnail: updated });
+  } catch (err: any) {
+    res.status(500).json({ message: err.message });
+  }
+};

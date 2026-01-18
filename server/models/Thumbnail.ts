@@ -14,6 +14,12 @@ export interface IThumbnail extends Document {
     isGenerating?: boolean;
     createdAt?: Date; // Now this will actually exist!
     updatedAt?: Date;
+    text_pos_x: Number,
+    text_pos_y: Number,
+    text_size_pct: Number,
+    text_font: String,
+    text_color: String,
+
 }
 
 const ThumbnailSchema = new mongoose.Schema<IThumbnail>({
@@ -27,7 +33,13 @@ const ThumbnailSchema = new mongoose.Schema<IThumbnail>({
     image_url: { type: String, default: "" },
     prompt_used: { type: String},
     user_prompt: { type: String},
-    isGenerating: { type: Boolean, default: true }
+    isGenerating: { type: Boolean, default: true },
+    text_pos_x: { type: Number, default: 0.05 },
+    text_pos_y: { type: Number, default: 0.8 },
+    text_size_pct: { type: Number, default: 0.08 },
+    text_font: { type: String, default: "Anton" },
+    text_color: { type: String, default: "#FFD400" },
+
 }, 
 // 👇 ADD THIS BLOCK HERE
 { 

@@ -40,7 +40,7 @@ export interface IThumbnail {
     style: "Bold & Graphic" | "Tech/Futuristic" | "Minimalist" | "Photorealistic" | "Illustrated";
     aspect_ratio?: "16:9" | "1:1" | "9:16";
     color_scheme?: "vibrant" | "sunset" | "forest" | "neon" | "purple" | "monochrome" | "ocean" | "pastel";
-    text_overlay?: boolean;
+    text_overlay?: string;
     image_url?: string;
     prompt_used?: string;
     user_prompt?: string;
@@ -65,7 +65,7 @@ export const dummyThumbnails = [
         style: "Bold & Graphic",
         aspect_ratio: "16:9",
         color_scheme: "vibrant",
-        text_overlay: true,
+        text_overlay: "",
         image_url: thumb_1,
         prompt_used: "add multiple smartwatches ",
         user_prompt: "add multiple smartwatches ",
@@ -81,7 +81,7 @@ export const dummyThumbnails = [
         style: "Bold & Graphic",
         aspect_ratio: "16:9",
         color_scheme: "vibrant",
-        text_overlay: true,
+        text_overlay: "",
         image_url: thumb_2,
         prompt_used: "add cash images graph and etc",
         user_prompt: "add cash images graph and etc",
