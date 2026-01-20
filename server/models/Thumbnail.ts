@@ -1,26 +1,33 @@
 import mongoose, { Document } from 'mongoose'; // Added Document import for clarity
 
 export interface IThumbnail extends Document {
-    userId: string;
-    title: string;
-    description?: string;
-    style: "Bold & Graphic" | "Tech/Futuristic" | "Minimalist" | "Photorealistic" | "Illustrated";
-    aspect_ratio?: "16:9" | "1:1" | "9:16";
-    color_scheme?: "vibrant" | "sunset" | "forest" | "neon" | "purple" | "monochrome" | "ocean" | "pastel";
-    text_overlay?: string;
-    image_url?: string;
-    prompt_used?: string;
-    user_prompt?: string;
-    isGenerating?: boolean;
-    createdAt?: Date; // Now this will actually exist!
-    updatedAt?: Date;
-    text_pos_x: Number,
-    text_pos_y: Number,
-    text_size_pct: Number,
-    text_font: String,
-    text_color: String,
+  userId: string;
+  title: string;
 
+  style: "Bold & Graphic" | "Tech/Futuristic" | "Minimalist" | "Photorealistic" | "Illustrated";
+  aspect_ratio?: "16:9" | "1:1" | "9:16";
+  color_scheme?: "vibrant" | "sunset" | "forest" | "neon" | "purple" | "monochrome" | "ocean" | "pastel";
+
+  description?:string
+  text_overlay?: string;
+
+  text_pos_x?: number;
+  text_pos_y?: number;
+  text_size_pct?: number;
+  text_font?: string;
+  text_color?: string;
+
+  image_url?: string;
+
+  prompt_used?: string;
+  user_prompt?: string;
+
+  isGenerating?: boolean;
+
+  createdAt?: Date;
+  updatedAt?: Date;
 }
+
 
 const ThumbnailSchema = new mongoose.Schema<IThumbnail>({
     userId: { type: String, ref: 'User', required: true },
@@ -39,9 +46,7 @@ const ThumbnailSchema = new mongoose.Schema<IThumbnail>({
     text_size_pct: { type: Number, default: 0.08 },
     text_font: { type: String, default: "Anton" },
     text_color: { type: String, default: "#FFD400" },
-
 }, 
-// 👇 ADD THIS BLOCK HERE
 { 
     timestamps: true 
 });
