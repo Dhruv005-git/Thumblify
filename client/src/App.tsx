@@ -13,6 +13,8 @@ import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import ContactPage from "./pages/ContactPage";
 
+// Hello
+
 export default function App() {
 
     const {pathname} = useLocation();
