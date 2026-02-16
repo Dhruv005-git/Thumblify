@@ -300,8 +300,24 @@ const PreviewPanel: React.FC<{
       >
         {/* loading */}
         {isLoading && (
-          <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/60">
-            <Loader2Icon className="size-10 animate-spin text-zinc-200" />
+          <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black/70 text-center px-6">
+            
+            {/* Spinner */}
+            <Loader2Icon className="size-12 animate-spin text-zinc-200 mb-4" />
+
+            {/* Main Message */}
+            <p className="text-zinc-100 font-semibold text-lg">
+              Please hold on...
+            </p>
+
+            {/* Sub Message */}
+            <p className="text-zinc-400 text-sm mt-2 max-w-sm">
+              Your thumbnail is being generated. This usually takes{" "}
+              <span className="text-pink-400 font-semibold">
+                15–20 seconds
+              </span>.
+            </p>
+
           </div>
         )}
 
