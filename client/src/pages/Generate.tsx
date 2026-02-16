@@ -44,40 +44,48 @@ const Generate = () => {
   /* ---------------- GENERATE OPTIONS ---------------- */
 
   const handleGenerate = async () => {
-    if (!isLoggedIn)
-      return toast.error("Please login to generate thumbnails");
+  if (!isLoggedIn)
+    return toast.error("Please login to generate thumbnails");
 
-    if (!title.trim()) return toast.error("Title is required");
+  if (!title.trim()) return toast.error("Title is required");
 
-    setLoading(true);
-    setOptions([]);
-    setSelectedOption(null);
+  setLoading(true);
+  setOptions([]);
 
-    try {
-      const api_payload = {
-        title,
-        prompt: additionalDetails,
-        style,
-        aspect_ratio: aspectRatio,
-        color_scheme: colorSchemeId,
-      };
+  try {
+    const api_payload = {
+      title,
+      prompt: additionalDetails,
+      style,
+      aspect_ratio: aspectRatio,
+      color_scheme: colorSchemeId,
+    };
 
-      const { data } = await api.post(
-        "/api/thumbnail/generate-options",
-        api_payload
-      );
+    const { data } = await api.post(
+      "/api/thumbnail/generate-options",
+      api_payload
+    );
 
-      if (data.options) {
-        toast.success("Generated 2 options — pick your favorite!");
-        setOptions(data.options);
-      }
-    } catch (error: any) {
-      console.log(error);
-      toast.error(error?.response?.data?.message || error.message);
-    } finally {
-      setLoading(false);
+    if (data.options) {
+      toast.success("Choose one thumbnail option!");
+      setOptions(data.options);
     }
-  };
+  } catch (error: any) {
+    console.log("GENERATION ERROR:", error);
+
+    // ✅ QUOTA LIMIT ERROR (429)
+    if (error.response?.status === 429) {
+      return toast.error(
+        "AI limit reached😅! Please try again later"
+      );
+    }
+
+    // ✅ Normal Errors
+    toast.error(error?.response?.data?.message || "Something went wrong");
+  } finally {
+    setLoading(false);
+  }
+};
 
   /* ---------------- FINALIZE SAVE ---------------- */
 
@@ -107,11 +115,18 @@ const Generate = () => {
         navigate("/generate/" + data.thumbnail._id);
       }
     } catch (error: any) {
-      console.log(error);
-      toast.error(error?.response?.data?.message || error.message);
-    } finally {
-      setLoading(false);
-    }
+  console.log("FINALIZE ERROR:", error);
+
+  if (error.response?.status === 429) {
+    return toast.error(
+      "⚠️ Upload limit reached. Please try again later."
+    );
+  }
+
+  toast.error(error?.response?.data?.message || "Finalization failed");
+} finally {
+  setLoading(false);
+}
   };
 
   /* ---------------- FETCH THUMBNAIL ---------------- */
