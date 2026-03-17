@@ -28,7 +28,6 @@ export interface IThumbnail extends Document {
   updatedAt?: Date;
 }
 
-
 const ThumbnailSchema = new mongoose.Schema<IThumbnail>({
     userId: { type: String, ref: 'User', required: true },
     title: { type: String, required: true, trim: true },

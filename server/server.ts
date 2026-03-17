@@ -15,8 +15,6 @@ declare module 'express-session' {
     }
 }
 
-//Trying
-
 await connectDB();
 
 const app = express();
