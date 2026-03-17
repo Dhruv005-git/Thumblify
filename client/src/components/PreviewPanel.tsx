@@ -4,21 +4,6 @@ import { DownloadIcon, ImageIcon, Loader2Icon } from "lucide-react";
 import api from "../configs/api"; // optional: used for saving position to your backend
 import toast from "react-hot-toast";
 
-/*
-  Important: add Google Fonts in your index.html for the fonts you want to use:
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
-
-  This component provides:
-   - draggable text (with pointer events, works on touch & mouse)
-   - font-family selector
-   - font-size slider
-   - color picker for text
-   - save-position (calls backend if thumbnail._id exists)
-   - download/export which rasterizes image + text to canvas
-
-  Note: backend endpoint used to save position is PATCH /api/thumbnail/:id (you can change URL in savePosition())
-*/
-
 function wrapText(
   ctx: CanvasRenderingContext2D,
   text: string,
@@ -51,11 +36,16 @@ function wrapText(
 }
 
 const FONT_OPTIONS = [
-  { label: "Anton", value: "Anton, Impact, Arial" },
-  { label: "Bebas Neue", value: "'Bebas Neue', Impact, Arial" },
-  { label: "Montserrat", value: "'Montserrat', Arial" },
-  { label: "Impact", value: "Impact, Arial Black, sans-serif" },
-  { label: "Arial", value: "Arial, Helvetica, sans-serif" },
+  { label: "Anton", value: "Anton, Impact, sans-serif" },
+  { label: "Bangers", value: "'Bangers', Impact, sans-serif" },
+  { label: "Luckiest Guy", value: "'Luckiest Guy', Impact, sans-serif" },
+  { label: "Bebas Neue", value: "'Bebas Neue', Impact, sans-serif" },
+  { label: "Oswald", value: "'Oswald', sans-serif" },
+  { label: "Poppins", value: "'Poppins', sans-serif" },
+  { label: "Montserrat", value: "'Montserrat', sans-serif" },
+  { label: "Teko", value: "'Teko', sans-serif" },
+  { label: "Russo One", value: "'Russo One', sans-serif" },
+  { label: "Orbitron", value: "'Orbitron', sans-serif" },
 ];
 
 const PreviewPanel: React.FC<{
