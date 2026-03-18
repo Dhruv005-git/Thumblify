@@ -1,37 +1,7 @@
 import { Request, Response } from "express";
 import Thumbnail from "../models/Thumbnail.js";
 import { v2 as cloudinary } from "cloudinary";
-import { generateThumbnailService, generateOptionsService } from "../services/thumbnailService.js";
-
-/* ---------------- GENERATE THUMBNAIL ---------------- */
-
-export const generateThumbnail = async (req: Request, res: Response) => {
-  try {
-    const { userId } = req.session;
-
-    if (!userId) {
-      return res.status(401).json({ message: "User not logged in" });
-    }
-
-    const thumbnail = await generateThumbnailService(req.body, userId);
-
-    res.json({
-      message: "Thumbnail generated successfully",
-      thumbnail,
-    });
-  } catch (error: any) {
-    if (error.message === "NO_IMAGE") {
-      return res.status(500).json({
-        message: "No image returned from API",
-      });
-    }
-
-    res.status(500).json({
-      message: "Thumbnail generation failed",
-      error: error.message,
-    });
-  }
-};
+import { generateOptionsService } from "../services/thumbnailService.js";
 
 /* ---------------- GENERATE OPTIONS ---------------- */
 
